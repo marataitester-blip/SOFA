@@ -28,7 +28,7 @@ export const useAudio = (isMuted: boolean) => {
     const speak = useCallback((text: string) => {
         if (!isMuted && 'speechSynthesis' in window) {
             speechSynthesis.cancel(); // Stop any previous speech
-            const cleanText = text.replace(/([✨🌙☀️🌳⏳▫️*])/g, ''); // Remove symbols and markdown for cleaner speech
+            const cleanText = text.replace(/([✨🌙☀️🌳⏳▫️]|\*\*)/g, ''); // Remove symbols and markdown for cleaner speech
             const utterance = new SpeechSynthesisUtterance(cleanText);
             utterance.lang = 'ru-RU';
             speechSynthesis.speak(utterance);
